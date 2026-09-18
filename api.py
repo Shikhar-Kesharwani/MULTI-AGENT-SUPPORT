@@ -14,9 +14,10 @@ if os.environ.get("GEMINI_API_KEY"):
 api = FastAPI(title="Multi-Agent Writer API")
 
 # Add CORS so React frontend can call it
+frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 api.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[frontend_url],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
